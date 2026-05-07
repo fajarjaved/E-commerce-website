@@ -85,10 +85,13 @@ app.set("layout", "layouts/main-layout");
 
 //  Database Connection
 
+// Database Connection
 (async () => {
   try {
-    await mongoose.connect("mongodb://localhost/sana_safinaz");
-    console.log(" Connected to MongoDB successfully!");
+    // Localhost hata kar process.env wala link use karein
+    const dbURI = process.env.MONGODB_URI || "mongodb://localhost/sana_safinaz";
+    await mongoose.connect(dbURI);
+    console.log("Connected to MongoDB successfully!");
   } catch (err) {
     console.error("MongoDB connection error:", err.message);
   }
