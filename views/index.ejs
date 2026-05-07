@@ -1,0 +1,319 @@
+<!-- Custom CSS -->
+<style>
+  :root{
+    --brand: #111827;
+    --muted: #6b7280;
+    --cardBorder: rgba(15, 23, 42, 0.08);
+    --shadow: 0 12px 30px rgba(0,0,0,.08);
+    --shadowHover: 0 18px 45px rgba(0,0,0,.14);
+    --radius: 18px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero-wrap{
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    margin: 18px 18px 0;
+    box-shadow: var(--shadow);
+  }
+  .hero-img{
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.02);
+  }
+  .hero-overlay{
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.25) 55%, rgba(0,0,0,.08) 100%),
+      radial-gradient(90% 80% at 30% 50%, rgba(0,0,0,.30) 0%, rgba(0,0,0,0) 70%);
+  }
+  .hero-content{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding: 28px 42px;
+    color:#fff;
+  }
+  .hero-box{
+    max-width: 620px;
+  }
+  .hero-title{
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: clamp(34px, 3.5vw, 56px);
+    line-height: 1.05;
+    margin: 0 0 10px;
+    text-shadow: 0 8px 30px rgba(0,0,0,.35);
+  }
+  .hero-sub{
+    margin: 0;
+    font-size: clamp(14px, 1.3vw, 18px);
+    color: rgba(255,255,255,.85);
+    max-width: 520px;
+  }
+  .hero-cta{
+    margin-top: 18px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.12);
+    color:#fff;
+    font-weight: 700;
+    text-decoration:none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+  }
+  .hero-cta:hover{
+    transform: translateY(-2px);
+    background: rgba(255,255,255,.18);
+    box-shadow: 0 16px 35px rgba(0,0,0,.18);
+  }
+
+  /* ---------- SECTION HEADING ---------- */
+  .home-title{
+    text-align:center;
+    margin: 22px 0 6px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .home-sub{
+    text-align:center;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  /* ---------- PRODUCT CARD (PREMIUM) ---------- */
+  .product-card{
+    border: 1px solid var(--cardBorder);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,.06);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .product-card:hover{
+    transform: translateY(-6px);
+    box-shadow: var(--shadowHover);
+    border-color: rgba(15, 23, 42, 0.12);
+  }
+
+  .product-media{
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    padding: 14px;
+  }
+
+  .product-card img{
+    width:100%;
+    height: 320px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 14px;
+    transition: transform .25s ease;
+  }
+  .product-card:hover img{
+    transform: scale(1.04);
+  }
+
+  .product-body{
+    padding: 14px 16px 10px;
+    text-align:center;
+  }
+  .product-title{
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px;
+    min-height: 40px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .product-price{
+    font-size: 16px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 6px;
+  }
+
+  .product-actions{
+    display:flex;
+    gap:10px;
+    padding: 12px 14px 14px;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+  }
+  .btn-cart{
+    flex:1;
+    border-radius: 999px;
+    background: #111827;
+    border: 1px solid #111827;
+    color:#fff;
+    font-weight: 700;
+    padding: 10px 12px;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-cart:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 12px 25px rgba(17,24,39,.18);
+    background: #0b1220;
+  }
+  .btn-wish{
+    flex:1;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(17,24,39,.25);
+    color:#111827;
+    font-weight: 700;
+    padding: 10px 12px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .btn-wish:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(0,0,0,.08);
+    border-color: rgba(17,24,39,.45);
+  }
+
+  /* ---------- Pagination ---------- */
+  .pagination .page-link{
+    border-radius: 10px !important;
+    padding: 10px 14px;
+  }
+  .pagination .page-item.active .page-link{
+    background: #111827;
+    border-color: #111827;
+  }
+
+  /* ---------- Responsive tweaks ---------- */
+  @media (max-width: 768px){
+    .hero-img{ height: 420px; }
+    .hero-content{ padding: 18px 18px; }
+    .hero-box{ max-width: 100%; }
+    .product-card img{ height: 260px; }
+  }
+
+
+
+
+
+
+
+
+
+  /* Product text fonts */
+.product-title{
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  line-height: 1.4;
+  color: #111;
+}
+
+.product-price{
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Buttons font */
+.btn-cart,
+.btn-wish{
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.btn-cart:hover{
+  color: #b8eef8;   /* light grey text */
+}
+</style>
+
+<!-- Banner Section -->
+<div class="hero-wrap">
+  <img src="/images/main_backImg.webp" class="hero-img" alt="Main Home Image">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-box">
+      <h1 class="hero-title">Luxury Women Clothing</h1>
+      <p class="hero-sub">Discover elegance and comfort in every outfit</p>
+      <a href="#products" class="hero-cta">
+        Shop Now 
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Home Heading -->
+<h1 class="home-title text-black">Home</h1>
+<p class="home-sub">New arrivals & curated picks, just for you.</p>
+
+<!-- Product Section -->
+<div id="products" class="container-fluid p-4">
+  <div class="row row-cols-lg-4 row-cols-md-3 row-cols-2 g-4">
+    <% if (products && products.length > 0) { %>
+      <% products.forEach((product) => { %>
+        <div class="col">
+          <div class="product-card h-100">
+            <a href="/product/<%= product._id %>" class="text-decoration-none">
+              <div class="product-media">
+                <img
+                  src="<%= product.image || 'https://via.placeholder.com/200' %>"
+                  alt="<%= product.name %>">
+              </div>
+
+              <div class="product-body">
+                <div class="product-title"><%= product.name %></div>
+                <div class="product-price"><%= priceFormat(product.price) %></div>
+              </div>
+            </a>
+
+            <div class="product-actions">
+              <a href="/cart/add/<%= product._id %>" class="btn btn-cart btn-sm">
+                <i class="fas fa-shopping-bag nav-icon"></i> Add to Cart
+              </a>
+              <a href="/wishlist/add/<%= product._id %>" class="btn btn-wish btn-sm">
+                <i class="fas fa-heart nav-icon"></i> Wishlist
+              </a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="col-12">
+        <p class="alert alert-info text-center">No products found matching your criteria.</p>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Pagination -->
+  <% if (totalPages > 1) { %>
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4">
+      <ul class="pagination">
+        <li class="page-item <%= page === 1 ? 'disabled' : '' %>">
+          <a class="page-link" href="/?page=<%= page - 1 %>">&laquo; Previous</a>
+        </li>
+
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <li class="page-item <%= i === page ? 'active' : '' %>">
+            <a class="page-link" href="/?page=<%= i %>"><%= i %></a>
+          </li>
+        <% } %>
+
+        <li class="page-item <%= page === totalPages ? 'disabled' : '' %>">
+          <a class="page-link" href="/?page=<%= page + 1 %>">Next &raquo;</a>
+        </li>
+      </ul>
+    </nav>
+  <% } %>
+</div>

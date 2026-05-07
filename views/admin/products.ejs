@@ -1,0 +1,117 @@
+<div class="content">
+    <div class="admin-header">
+        <h1>Products</h1>
+        <a href="/admin/products/add" class="btn-primary">Add Product</a>
+    </div>
+    <div class="p-5 shadow-lg rounded" style="background-color: #f9f9f9;">
+        <h5 class="text-center fw-bold text-secondary mb-4">Search & Filter Products</h5>
+        <form method="GET" action="/admin/products" class="d-flex flex-column gap-4">
+            <div class="form-group">
+                <input
+                    type="text"
+                    name="search"
+                    id="search"
+                    class="form-control"
+                    placeholder="Search by product title..."
+                    value="<%= search %>"
+                    style="border-radius: 5px; border: 1px solid #ddd; padding: 10px;">
+                <button type="submit" class="btn btn-primary mt-2" style="padding: 10px 15px;">Search</button>
+            </div>
+
+            <div class="form-group">
+                <label for="fromPrice" class="fw-bold text-secondary mb-2">Price Range:</label>
+                <div class="d-flex align-items-center">
+                    <input
+                        type="number"
+                        name="fromPrice"
+                        id="fromPrice"
+                        class="form-control me-2"
+                        placeholder="From"
+                        value="<%= fromPrice %>"
+                        style="width: 100px; border-radius: 5px; border: 1px solid #ddd; padding: 10px;">
+                    <span class="mx-2">to</span>
+                    <input
+                        type="number"
+                        name="toPrice"
+                        id="toPrice"
+                        class="form-control ms-2"
+                        placeholder="To"
+                        value="<%= toPrice %>"
+                        style="width: 100px; border-radius: 5px; border: 1px solid #ddd; padding: 10px;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="sort" class="fw-bold text-secondary mb-2">Sort by:</label>
+                <select
+                    name="sort"
+                    id="sort"
+                    class="form-select"
+                    style="border-radius: 5px; border: 1px solid #ddd; padding: 10px;">
+                    <option value="" <% if (!sort) { %>selected<% } %>>Sort by</option>
+                    <option value="price_asc" <% if (sort === 'price_asc') { %>selected<% } %>>Price: Low to High</option>
+                    <option value="price_desc" <% if (sort === 'price_desc') { %>selected<% } %>>Price: High to Low</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <% if (products && products.length > 0) { /* Check if products array exists and is not empty */ %>
+                <% products.forEach(product => { %>
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="card">
+                            <img src="<%= product.image || 'https://via.placeholder.com/150' %>"
+                                 class="card-img-top"
+                                 alt="<%= product.name %>">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><%= product.name %></h5>
+                                <p class="card-text fw-bold text-center"><b>Rs <%= product.price.toFixed(2) %></b></p>
+                                <p class="card-text text-center">Category:
+                                    <% if (product.category && product.category.name) { /* Safe check for category name */ %>
+                                        <%= product.category.name %>
+                                    <% } else { %>
+                                        N/A
+                                    <% } %>
+                                </p>
+                                <a href="/admin/products/edit/<%= product.id %>" class="btn btn-primary">Edit</a>
+                                <a href="/admin/products/delete/<%= product.id %>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                            </div>
+
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col-12">
+                    <p class="alert alert-info text-center">No products found.</p>
+                </div>
+            <% } %>
+        </div>
+
+        <% if (totalPages > 1) { /* Only show pagination if there's more than 1 page */ %>
+            <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4">
+                <ul class="pagination">
+                    <li class="page-item <%= page === 1 ? 'disabled' : '' %>">
+                        <a class="page-link" href="/admin/products/<%= page - 1 %>?search=<%= search %>&fromPrice=<%= fromPrice %>&toPrice=<%= toPrice %>&sort=<%= sort %>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo; Previous</span>
+                        </a>
+                    </li>
+
+                    <% for (let i = 1; i <= totalPages; i++) { %>
+                        <li class="page-item <%= i === page ? 'active' : '' %>">
+                            <a class="page-link" href="/admin/products/<%= i %>?search=<%= search %>&fromPrice=<%= fromPrice %>&toPrice=<%= toPrice %>&sort=<%= sort %>"><%= i %></a>
+                        </li>
+                    <% } %>
+
+                    <li class="page-item <%= page === totalPages ? 'disabled' : '' %>">
+                        <a class="page-link" href="/admin/products/<%= page + 1 %>?search=<%= search %>&fromPrice=<%= fromPrice %>&toPrice=<%= toPrice %>&sort=<%= sort %>" aria-label="Next">
+                            <span aria-hidden="true">Next &raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        <% } %>
+    </div>
+</div>

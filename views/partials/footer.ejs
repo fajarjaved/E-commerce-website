@@ -1,0 +1,270 @@
+
+<style>
+
+  /* ===== Premium Footer UI (NO content removed) ===== */
+.site-footer{
+  background: #fafafa;
+  border-top: 1px solid rgba(0,0,0,.08);
+  font-family: 'Inter', sans-serif;
+}
+
+.site-footer .footer-title{
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: .4px;
+  color: #111;
+  margin-bottom: 12px;
+}
+
+.site-footer .footer-sub{
+  color: rgba(0,0,0,.6);
+  font-size: 14px;
+  margin: 0;
+}
+
+.footer-top{
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  backdrop-filter: blur(10px);
+}
+
+.footer-newsletter .footer-input{
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.12);
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+.footer-newsletter .footer-input:focus{
+  border-color: rgba(0,0,0,.35);
+  box-shadow: 0 0 0 4px rgba(0,0,0,.06);
+}
+
+.footer-btn{
+  background: #111;
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  border: 1px solid #111;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.footer-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(0,0,0,.15);
+}
+
+.footer-iconbox{
+  background: rgba(255,255,255,.8);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 14px;
+  padding: 14px 10px;
+  text-align: center;
+  display: grid;
+  gap: 8px;
+  transition: transform .2s ease, box-shadow .2s ease;
+  height: 100%;
+}
+
+.footer-iconbox i{
+  font-size: 22px;
+  color: #111;
+}
+
+.footer-iconbox span{
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(0,0,0,.75);
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+
+.footer-iconbox:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 25px rgba(0,0,0,.08);
+}
+
+.footer-links{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+.footer-list li{
+  margin-bottom: 8px;
+}
+
+.footer-list a{
+  color: rgba(0,0,0,.65);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color .2s ease, transform .2s ease;
+  display: inline-block;
+}
+
+.footer-list a:hover{
+  color: #000;
+  transform: translateX(2px);
+}
+
+.footer-text{
+  color: rgba(0,0,0,.65);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.footer-text a{
+  color: rgba(0,0,0,.75);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(0,0,0,.25);
+}
+
+.footer-text a:hover{
+  color: #000;
+  border-bottom-color: rgba(0,0,0,.5);
+}
+
+.footer-bottom{
+  border-top: 1px solid rgba(0,0,0,.08);
+  color: rgba(0,0,0,.55);
+  font-size: 13px;
+}
+
+/* Mobile spacing refinement */
+@media (max-width: 576px){
+  .footer-top, .footer-links{ border-radius: 14px; }
+  .footer-btn{ width: 100%; }
+}
+
+
+
+.site-footer .container{
+  max-width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+</style>
+
+
+<footer class="site-footer mt-5">
+  <div class="container py-5">
+
+    <!-- Top Row: Newsletter + Icons -->
+    <div class="footer-top p-4 p-lg-4 mb-4">
+      <div class="row align-items-center gy-4">
+
+        <!-- Newsletter -->
+        <div class="col-lg-6">
+          <h6 class="footer-title mb-2">SIGN UP FOR OUR NEWSLETTER</h6>
+          <p class="footer-sub mb-3">Get updates on new arrivals, sales & exclusive offers.</p>
+
+          <div class="footer-newsletter d-flex flex-column flex-sm-row gap-2">
+            <input type="email" class="form-control footer-input" placeholder="Enter Email">
+            <button class="btn footer-btn" id="newsLetter_Btn">SIGN UP</button>
+          </div>
+        </div>
+
+        <!-- Quick Icons -->
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-4">
+              <div class="footer-iconbox">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Find Stores</span>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="footer-iconbox">
+                <i class="fa-solid fa-truck-fast"></i>
+                <span>Track Order</span>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="footer-iconbox">
+                <i class="fa-solid fa-tty"></i>
+                <span>Get In Touch</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Links Row -->
+    <div class="footer-links p-4 p-lg-5">
+      <div class="row gy-4">
+
+        <div class="col-6 col-md-4 col-lg-2">
+          <h6 class="footer-title">COMPANY</h6>
+          <ul class="list-unstyled footer-list">
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Shipping Information</a></li>
+            <li><a href="#">Return & Security</a></li>
+            <li><a href="#">Payment & Security</a></li>
+            <li><a href="#">Loyalty Programme</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+          <h6 class="footer-title">HELP</h6>
+          <ul class="list-unstyled footer-list">
+            <li><a href="#">Track your Order</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Store Locator</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+          <h6 class="footer-title">SIZE</h6>
+          <ul class="list-unstyled footer-list">
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Size Chart</a></li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6 class="footer-title">CONTACT US</h6>
+          <ul class="list-unstyled footer-text">
+            <li><strong>Sanasafinaz UAN PAKISTAN:</strong></li>
+            <li>021-111-003-005 or 021-36105426</li>
+            <li class="mt-2"><strong>UAN INTERNATIONAL:</strong></li>
+            <li>+9221-111-003-005 or +9221-36105426</li>
+            <li class="mt-2">Email:
+              <a href="mailto:sales@sanasafinaz.com">sales@sanasafinaz.com</a>
+            </li>
+            <li>
+              <a href="mailto:bridals@sanasafinaz.com">bridals@sanasafinaz.com</a>
+            </li>
+          </ul>
+
+          <h6 class="footer-title mt-3">TALK TO US</h6>
+          <p class="footer-text mb-0">Text Us @ 9995 (For Residents of Pakistan Only)</p>
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-3">
+          <h6 class="footer-title">INFORMATION</h6>
+          <ul class="list-unstyled footer-list">
+            <li><a href="#">Privacy and Cookie Policy</a></li>
+            <li><a href="#">Order and Returns</a></li>
+            <li><a href="#">Search Terms</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom mt-4 pt-3">
+        <p class="text-center mb-0">Powered by sanasafinaz.com</p>
+      </div>
+    </div>
+
+  </div>
+</footer>

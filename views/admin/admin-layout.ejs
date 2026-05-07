@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root{
+            --sidebar-bg:#243b53;
+            --sidebar-bg-dark:#1f3448;
+            --sidebar-text:#ffffff;
+            --sidebar-muted:rgba(255,255,255,.72);
+
+            --content-bg:#f5f7fb;
+            --card-bg:#ffffff;
+            --text:#111827;
+            --muted:#6b7280;
+            --border:#e5e7eb;
+
+            --active-bg:#0f172a;
+            --active-text:#ffffff;
+
+            --logout-bg:#ef5a43;
+            --logout-bg-hover:#df4b34;
+
+            --radius:18px;
+            --shadow:0 14px 34px rgba(0,0,0,.06);
+        }
+
+        *{
+            box-sizing:border-box;
+        }
+
+        body{
+            margin:0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background:var(--content-bg);
+            color:var(--text);
+        }
+
+        a{
+            text-decoration:none !important;
+        }
+
+        .admin-container{
+            min-height:100vh;
+            display:flex;
+            background:var(--content-bg);
+        }
+
+        /* Sidebar */
+        .sidebar{
+            width:270px;
+            background:var(--sidebar-bg);
+            color:var(--sidebar-text);
+            padding:26px 18px;
+            display:flex;
+            flex-direction:column;
+            gap:22px;
+            border-right:1px solid rgba(255,255,255,.04);
+        }
+
+        .brand{
+            padding:10px 8px 2px;
+        }
+
+        .brand-link{
+            display:flex;
+            align-items:center;
+            gap:14px;
+            color:#fff !important;
+            font-size:20px;
+            font-weight:700;
+        }
+
+        .brand-link i{
+            font-size:28px;
+        }
+
+        .brand-sub{
+            margin-top:18px;
+            color:var(--sidebar-muted);
+            font-size:14px;
+            line-height:1.55;
+            max-width:210px;
+        }
+
+        .menu{
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+            margin-top:6px;
+        }
+
+        .menu-item{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:14px 16px;
+            color:#f8fafc !important;
+            border-radius:16px;
+            font-size:15px;
+            font-weight:600;
+            transition:all .18s ease;
+        }
+
+        .menu-item i{
+            width:18px;
+            text-align:center;
+            font-size:15px;
+        }
+
+        .menu-item:hover{
+            background:rgba(255,255,255,.08);
+            color:#fff !important;
+        }
+
+        .menu-item.active{
+            background:#0b1328;
+            color:#fff !important;
+            box-shadow:0 10px 22px rgba(0,0,0,.18);
+        }
+
+        /* Main content */
+        .content{
+            flex:1;
+            min-width:0;
+            padding:26px 30px;
+            background:var(--content-bg);
+        }
+
+        .admin-header{
+            background:var(--card-bg);
+            border:1px solid var(--border);
+            border-radius:24px;
+            padding:18px 22px;
+            box-shadow:var(--shadow);
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:16px;
+            margin-bottom:18px;
+        }
+
+        .admin-header h1{
+            margin:0;
+            font-size:33px;
+            font-weight:700;
+            color:var(--text);
+            line-height:1.1;
+        }
+
+        .header-sub{
+            margin-top:7px;
+            color:var(--muted);
+            font-size:14px;
+        }
+
+        .admin-actions{
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .btn-logout{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            padding:11px 18px;
+            min-width:100px;
+            border-radius:14px;
+            background:var(--logout-bg);
+            color:#fff !important;
+            font-weight:700;
+            font-size:14px;
+            transition:.18s ease;
+        }
+
+        .btn-logout:hover{
+            background:var(--logout-bg-hover);
+            color:#fff !important;
+        }
+
+        .page-content{
+            min-width:0;
+        }
+
+        /* Mobile */
+        .mobile-toggle{
+            display:none;
+            width:46px;
+            height:46px;
+            border:none;
+            border-radius:12px;
+            background:#fff;
+            color:#111827;
+            box-shadow:0 8px 18px rgba(0,0,0,.06);
+            align-items:center;
+            justify-content:center;
+            font-size:18px;
+        }
+
+        .sidebar-overlay{
+            display:none;
+            position:fixed;
+            inset:0;
+            background:rgba(15,23,42,.45);
+            z-index:999;
+        }
+
+        @media (max-width: 991px){
+            .sidebar{
+                position:fixed;
+                top:0;
+                left:-280px;
+                height:100vh;
+                z-index:1000;
+                transition:left .22s ease;
+            }
+
+            .sidebar.open{
+                left:0;
+            }
+
+            .sidebar-overlay.show{
+                display:block;
+            }
+
+            .content{
+                padding:16px;
+                width:100%;
+            }
+
+            .mobile-toggle{
+                display:inline-flex;
+            }
+
+            .admin-header{
+                flex-wrap:wrap;
+                padding:16px 16px;
+                border-radius:18px;
+            }
+
+            .admin-header h1{
+                font-size:28px;
+            }
+        }
+
+        @media (max-width: 576px){
+            .admin-header{
+                flex-direction:column;
+                align-items:flex-start;
+            }
+
+            .admin-header h1{
+                font-size:26px;
+            }
+
+            .btn-logout{
+                width:100%;
+            }
+        }
+    </style>
+    <style>
+        /* Logout button section */
+        .sidebar-logout{
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* Premium logout button */
+        .logout-btn{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            padding:12px 16px;
+            border-radius:12px;
+            background: rgba(255,255,255,0.08);
+            color:#fff;
+            text-decoration:none;
+            font-weight:600;
+            transition:all .2s ease;
+        }
+
+        .logout-btn i{
+            font-size:16px;
+        }
+
+        /* hover effect */
+        .logout-btn:hover{
+            background:#ff4d4d;
+            color:#fff;
+            transform: translateX(4px);
+        }
+
+
+
+
+
+        .admin-toast{
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 280px;
+    max-width: 380px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 14px 30px rgba(0,0,0,.16);
+    z-index: 5000;
+    animation: adminToastIn .35s ease;
+}
+
+.admin-toast.success{
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.admin-toast.error{
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+.admin-toast i{
+    font-size: 16px;
+    flex-shrink: 0;
+    color: #fff;
+}
+
+.admin-toast span{
+    color: #fff;
+    line-height: 1.4;
+}
+
+@keyframes adminToastIn{
+    from{
+        opacity: 0;
+        transform: translateY(-10px) translateX(20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+    }
+}
+
+@media (max-width: 576px){
+    .admin-toast{
+        top: 14px;
+        right: 14px;
+        left: 14px;
+        max-width: unset;
+        min-width: unset;
+        width: auto;
+        padding: 13px 14px;
+        border-radius: 12px;
+        font-size: 13px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <%
+        const pageTitle = typeof title !== 'undefined' ? title : '';
+        const currentPath = typeof currentUrl !== 'undefined' ? currentUrl : '';
+        const isDashboard = pageTitle === 'Admin Panel' || currentPath === '/admin';
+        const isProducts =
+            pageTitle === 'Manage Products' ||
+            pageTitle === 'Add Product' ||
+            pageTitle === 'Edit Product' ||
+            currentPath.includes('/admin/products');
+        const isOrders = pageTitle === 'Orders' || currentPath.includes('/admin/orders');
+    %>
+
+
+
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <i class="fa-solid fa-home"></i>
+                    <span>Main Website</span>
+                </a>
+
+                <div class="brand-sub">
+                    Manage your products, orders, and store operations from one clean dashboard.
+                </div>
+            </div>
+
+            <nav class="menu">
+                <a href="/admin" class="menu-item <%= isDashboard ? 'active' : '' %>">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="/admin/products" class="menu-item <%= isProducts ? 'active' : '' %>">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Manage Products</span>
+                </a>
+
+                <a href="/admin/orders" class="menu-item <%= isOrders ? 'active' : '' %>">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>View Orders</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-logout">
+                <a href="/logout" class="logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Main Content -->
+        <main class="content">
+
+             <% if (success_msg && success_msg.length > 0) { %>
+                 <div class="admin-toast success">
+                     <i class="fa-solid fa-circle-check"></i>
+                     <span><%= success_msg[0] %></span>
+                 </div>
+             <% } %>
+             
+             <% if (error_msg && error_msg.length > 0) { %>
+                 <div class="admin-toast error">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     <span><%= error_msg[0] %></span>
+                 </div>
+             <% } %>
+             
+             <div class="page-content">
+                 <%- body %>
+             </div>
+        </main>
+
+    </div>
+
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+        const mobileToggle = document.getElementById("mobileToggle");
+
+        if (mobileToggle && sidebar && overlay) {
+            mobileToggle.addEventListener("click", function () {
+                sidebar.classList.add("open");
+                overlay.classList.add("show");
+            });
+
+            overlay.addEventListener("click", function () {
+                sidebar.classList.remove("open");
+                overlay.classList.remove("show");
+            });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        setTimeout(() => {
+            const toasts = document.querySelectorAll(".admin-toast");
+            toasts.forEach((toast) => {
+                toast.style.transition = "all 0.35s ease";
+                toast.style.opacity = "0";
+                toast.style.transform = "translateY(-10px) translateX(20px)";
+                setTimeout(() => toast.remove(), 350);
+            });
+        }, 2500);
+
+    </script>
+</body>
+</html>

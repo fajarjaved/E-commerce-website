@@ -1,0 +1,282 @@
+
+
+<style>
+  .pd-page{
+    background: #f6f7fb;
+    padding: 28px 0 60px;
+  }
+  .pd-shell{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 18px;
+  }
+
+  .pd-card{
+    background:#fff;
+    border:1px solid rgba(0,0,0,.06);
+    border-radius:18px;
+    box-shadow: 0 18px 45px rgba(16,24,40,.08);
+    overflow:hidden;
+  }
+
+  .pd-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 0;
+  }
+
+  .pd-media{
+    background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,0));
+    padding: 26px;
+    border-right: 1px solid rgba(0,0,0,.06);
+  }
+
+  .pd-imgWrap{
+    background:#fff;
+    border:1px solid rgba(0,0,0,.06);
+    border-radius:16px;
+    padding: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height: 520px;
+  }
+
+  .pd-imgWrap img{
+    width:100%;
+    height: 480px;
+    object-fit: contain;
+    border-radius:12px;
+  }
+
+  .pd-info{
+    padding: 34px 34px 30px;
+  }
+
+  .pd-title{
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: .2px;
+    font-size: 34px;
+    line-height: 1.12;
+    margin: 0 0 10px;
+    color:#111827;
+  }
+
+  .pd-meta{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin: 10px 0 18px;
+  }
+  .pd-chip{
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border:1px solid rgba(0,0,0,.08);
+    background: rgba(0,0,0,.02);
+    color:#111827;
+  }
+
+  .pd-price{
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    margin: 6px 0 14px;
+    color:#0f172a;
+  }
+  .pd-price small{
+    font-weight:600;
+    font-size: 14px;
+    color:#64748b;
+    margin-right: 6px;
+  }
+
+  .pd-desc{
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:#334155;
+    font-size: 14.5px;
+    line-height: 1.75;
+    max-height: 96px;
+    overflow:hidden;
+    transition: max-height .25s ease;
+  }
+  .pd-desc.expanded{ max-height: 1200px; }
+
+  .pd-read{
+    margin-top: 8px;
+    border:0;
+    background:transparent;
+    color:#111827;
+    font-weight:700;
+    font-size: 13px;
+    cursor:pointer;
+    padding:0;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .pd-actions{
+    display:flex;
+    gap: 12px;
+    flex-wrap:wrap;
+    margin-top: 22px;
+  }
+
+  .pd-btn{
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-weight: 800;
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    border:1px solid rgba(0,0,0,.10);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    min-width: 170px;
+  }
+  .pd-btn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(0,0,0,.10);
+  }
+
+  .pd-btn-primary{
+    background:#111827;
+    color:#fff;
+    border-color:#111827;
+  }
+  .pd-btn-primary:hover{ background:#0b1220; }
+
+  .pd-btn-ghost{
+    background:#fff;
+    color:#111827;
+  }
+
+  .pd-divider{
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px dashed rgba(0,0,0,.14);
+    color:#64748b;
+    font-size: 13px;
+  }
+
+  @media (max-width: 992px){
+    .pd-grid{ grid-template-columns: 1fr; }
+    .pd-media{ border-right:0; border-bottom:1px solid rgba(0,0,0,.06); }
+    .pd-imgWrap{ min-height: 420px; }
+    .pd-imgWrap img{ height: 380px; }
+    .pd-title{ font-size: 28px; }
+    .pd-info{ padding: 26px 20px; }
+  }
+
+  /* HEAVY - commented */
+/*
+.pd-title{
+  font-weight:700;
+  font-size:34px;
+}
+*/
+
+/* FIX - Modern Premium Typography */
+
+.pd-heading{
+  margin-bottom: 14px;
+}
+
+.pd-code{
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.pd-title{
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.35;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* subtle luxury feel */
+.pd-title::after{
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, #6DC849, #3CB8D9);
+  border-radius: 2px;
+}
+</style>
+
+<section class="pd-page">
+  <div class="pd-shell">
+    <div class="pd-card">
+      <div class="pd-grid">
+        <div class="pd-media">
+          <div class="pd-imgWrap">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+          </div>
+        </div>
+
+        <div class="pd-info">
+          <h1 class="pd-title"><%= product.name %></h1>
+
+          
+
+          <div class="pd-meta">
+            <span class="pd-chip">Category: <strong><%= product.category %></strong></span>
+            <% if (product.stock !== undefined) { %>
+              <span class="pd-chip">Stock: <strong><%= product.stock %></strong></span>
+            <% } %>
+          </div>
+
+          <div class="pd-price">
+            <small>PKR</small><%= product.price %>
+          </div>
+
+          <div class="pd-desc" id="pdDesc">
+            <%= product.description %>
+          </div>
+          <button class="pd-read" id="pdReadBtn" type="button">
+            Read More <span aria-hidden="true">→</span>
+          </button>
+
+          <div class="pd-actions">
+            <a href="/cart/add/<%= product._id %>" class="pd-btn pd-btn-primary">
+              <i class="fas fa-shopping-bag"></i> Add to Cart
+            </a>
+            <a href="/" class="pd-btn pd-btn-ghost">
+              <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+          </div>
+
+          <div class="pd-divider">
+            • Free nationwide shipping <br> • Easy returns <br>• Secure checkout
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const desc = document.getElementById('pdDesc');
+    const btn = document.getElementById('pdReadBtn');
+    if (!desc || !btn) return;
+
+    btn.addEventListener('click', () => {
+      desc.classList.toggle('expanded');
+      btn.innerHTML = desc.classList.contains('expanded')
+        ? 'Read Less <span aria-hidden="true">←</span>'
+        : 'Read More <span aria-hidden="true">→</span>';
+    });
+  })();
+</script>

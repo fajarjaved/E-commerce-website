@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        /* CSS ka code shuru mein hi add kar diya gaya hai */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        .cart-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .cart-section {
+            flex: 2;
+        }
+        
+        .order-summary {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            align-self: flex-start;
+        }
+        
+        .cart-header, .order-summary-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .cart-product-link {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .cart-item img {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-details h4 {
+            font-size: 18px;
+            margin: 0 0 5px 0;
+        }
+        
+        .cart-item-details p {
+            font-size: 14px;
+            color: #555;
+            margin: 0;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-controls button {
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .icons .delete {
+            font-size: 20px;
+            color: #ff4d4f;
+            cursor: pointer;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-to-home a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-layout {
+                flex-direction: column;
+            }
+            .order-summary {
+                order: -1;
+            }
+        }
+
+
+
+
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cart Section -->
+        <div class="cart-layout">
+            <div class="cart-section">
+                <div class="cart-header">YOUR BAG</div>
+                <% if (cart.length === 0) { %>
+                    <p>Your cart is empty.</p>
+                <% } else { %>
+                    <% cart.forEach(item => { %>
+                        <!-- Cart Item -->
+                        <div class="cart-item">
+                            <a href="/product/<%= item.productId %>" class="cart-product-link">
+                                <img src="<%= item.image %>" alt="Product Image">
+                                <div class="cart-item-details">
+                                    <h4><%= item.name %></h4>
+                                    <p>Price: Rs<%= item.price %></p>
+                                </div>
+                            </a>
+                            <div class="cart-item-actions">
+                                <div class="quantity-controls">
+                                    <button class="decrease" data-id="<%= item.productId %>">-</button>
+                                    <span><%= item.quantity %></span>
+                                    <button class="increase" data-id="<%= item.productId %>">+</button>
+                                </div>
+                                <div class="icons">
+                                    <i class="delete" data-id="<%= item.productId %>">🗑️</i>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+
+            <!-- Order Summary -->
+            <% if (cart.length > 0) { %>
+                <div class="order-summary">
+                    <div class="order-summary-header">ORDER SUMMARY</div>
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <strong id="subtotal">PKR <%= totalPrice.toFixed(2) %></strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Shipping (Local - Shipping)</span>
+                        <strong>PKR 220.00</strong>
+                    </div>
+                    <hr>
+                    <% const orderTotal = totalPrice + 220.0; %>
+                    <div class="summary-item">
+                        <span>Order Total</span>
+                        <strong id="order-total">PKR <%= orderTotal.toFixed(2) %></strong>
+                    </div>
+                    <a href="/cart/checkout" class="checkout-btn">PROCEED TO CHECKOUT</a>
+                </div>
+            <% } %>
+        </div>
+        
+        <!-- Back to Home Page Button -->
+        <div class="back-to-home">
+            <a href="/">Back to Home Page</a>
+        </div>
+    </div>
+
+    <script>
+        // Handle quantity increase/decrease and delete actions
+        document.addEventListener("click", function (e) {
+            const id = e.target.dataset.id;
+            
+            if (!id) return; // Agar data-id nahi hai to aage na badhein
+
+            // Handle quantity increase/decrease
+            if (e.target.classList.contains("increase") || e.target.classList.contains("decrease")) {
+                const action = e.target.classList.contains("increase") ? "increase" : "decrease";
+                fetch(`/cart/update/${id}/${action}`, { method: "POST" })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.reload();
+                        }
+                    })
+                    .catch(error => console.error("Error updating quantity:", error));
+            }
+            
+            // Handle product deletion
+            if (e.target.classList.contains("delete")) {
+                fetch(`/cart/delete/${id}`, { method: "DELETE" })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.reload();
+                        } else {
+                            console.error(data.message || "Failed to delete item");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

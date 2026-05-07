@@ -1,0 +1,367 @@
+<style>
+  /* Luxury Header */
+.topbar-lux{
+  background:#b9a9a9; /* same-ish tone you already have */
+  color:#111;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+}
+.topbar-lux p{ letter-spacing:0.2px; }
+
+.header-lux{
+  border-bottom:1px solid rgba(0,0,0,0.07);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.header-row{
+  min-height: 74px;
+}
+
+.lux-logo{
+  max-height: 44px;
+  width:auto;
+}
+
+.lux-burger{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.lux-burger i{ font-size:20px; }
+.lux-burger:hover{ background:rgba(0,0,0,0.05); }
+
+/* Desktop links - minimal premium */
+.lux-link{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:#111;
+  padding:10px 10px;
+  border-radius:999px;
+  transition:0.18s ease;
+  font-size:13px;
+  letter-spacing:0.2px;
+}
+.lux-link i{
+  font-size:18px;
+  opacity:0.9;
+}
+.lux-link:hover{
+  background: rgba(0,0,0,0.04);
+  transform: translateY(-1px);
+}
+.lux-admin{
+  border:none;
+}
+
+/* Mobile small icons */
+.lux-mini{
+  color:#111;
+  text-decoration:none;
+  width:40px;
+  height:40px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(0,0,0,0.03);
+  border:1px solid rgba(0,0,0,0.06);
+}
+.lux-mini i{ font-size:18px; }
+
+/* Drawer */
+.lux-drawer{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  display:flex;
+}
+.lux-drawer-panel{
+  width:min(86vw, 360px);
+  height:100%;
+  background:#fff;
+  padding:20px;
+  box-shadow: 20px 0 40px rgba(0,0,0,0.15);
+  position:relative;
+  z-index:2;
+}
+.lux-drawer-backdrop{
+  flex:1;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(2px);
+}
+.lux-drawer-title{
+  font-weight:700;
+  letter-spacing:0.4px;
+}
+.lux-drawer-link{
+  display:flex;
+  align-items:center;
+  padding:12px 12px;
+  border-radius:12px;
+  text-decoration:none;
+  color:#111;
+  border:1px solid rgba(0,0,0,0.06);
+  background: rgba(0,0,0,0.02);
+  transition:0.18s ease;
+}
+.lux-drawer-link:hover{
+  background:#fff;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(0,0,0,0.10);
+}
+
+
+
+
+
+
+
+
+
+/* Luxury Top Bar */
+
+.topbar-luxury{
+  background: linear-gradient(90deg,#c2b6b6,#b5a5a5);
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  font-size:13px;
+}
+
+.topbar-inner{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+  padding:6px 0;
+  font-weight:500;
+}
+
+.topbar-badge{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.topbar-contact{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.topbar-inner i{
+  font-size:14px;
+  opacity:0.8;
+}
+
+
+.cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #e53935;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+.cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #222; /* ya jo aapke baki nav items ka color hai */
+}
+
+.cart-link:hover,
+.cart-link:focus,
+.cart-link:visited {
+  color: #222; /* same color rakho */
+  text-decoration: none;
+}
+
+.cart-link i,
+.cart-link span {
+  color: inherit;
+}
+.cart-badge {
+  color: white !important;
+}
+</style>
+
+
+<!-- Top Bar -->
+<div class="topbar-luxury" id="freeShip">
+  <div class="container-fluid">
+    <div class="topbar-inner">
+      <span class="topbar-badge">
+        <i class="fa-solid fa-truck-fast"></i>
+        Free Shipping Nationwide
+      </span>
+
+      <span class="topbar-contact">
+        <i class="fa-brands fa-whatsapp"></i>
+        UAN / WhatsApp: 021-111-003-005
+      </span>
+    </div>
+  </div>
+</div>
+
+<header class="header-lux position-sticky top-0 bg-white" style="z-index:1000;">
+  <div class="container-fluid px-3">
+    <div class="header-row d-flex align-items-center justify-content-between">
+
+      <!-- Left -->
+      <div class="d-flex align-items-center gap-2">
+        <!-- Mobile menu -->
+        <button id="menuToggle" class="btn p-0 border-0 bg-transparent d-lg-none lux-burger" aria-label="Open Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Logo -->
+        <a href="/" class="d-flex align-items-center text-decoration-none">
+          <img src="/images/header_img.webp" class="lux-logo" width="220" alt="Logo">
+        </a>
+      </div>
+
+      <!-- Right (Desktop) -->
+      <div class="d-none d-lg-flex align-items-center gap-3">
+        <a href="/wishlist" class="lux-link">
+          <i class="fas fa-heart"></i>
+          <span>Wishlist</span>
+        </a>
+
+        <a href="/cart" class="cart-link">
+           <i class="fa-solid fa-bag-shopping"></i>
+           <span>My Cart</span>
+
+           <% if (cartCount > 0) { %>
+             <span class="cart-badge"><%= cartCount %></span>
+           <% } %>
+        </a>
+
+
+
+        <% if (user) { %>
+          <a href="/auth/logout" class="lux-link">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        <% } else { %>
+
+          <a href="/auth/login" class="lux-link">
+            <i class="fa-regular fa-user"></i>
+            <span>Account</span>
+          </a>
+        <% } %>
+
+        <a href="https://wa.me/923284400645" class="lux-link" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+          <span>Whatsapp</span>
+        </a>
+
+        <% if (user && user.role === "admin") { %>
+          <a href="/admin" class="lux-link lux-admin">
+            <i class="fa-solid fa-cogs"></i>
+            <span>Admin</span>
+          </a>
+        <% } %>
+      </div>
+
+      <!-- Mobile quick icons (right) -->
+      <div class="d-lg-none d-flex align-items-center gap-3">
+        <a href="/wishlist" class="lux-mini" aria-label="Wishlist"><i class="fas fa-heart"></i></a>
+        <a href="/cart" class="lux-mini" aria-label="Cart"><i class="fas fa-shopping-bag"></i></a>
+        <% if (user) { %>
+          <a href="/auth/logout" class="lux-mini" aria-label="Logout"><i class="fas fa-sign-out-alt"></i></a>
+        <% } else { %>
+          <a href="/auth/login" class="lux-mini" aria-label="Account"><i class="fa-regular fa-user"></i></a>
+        <% } %>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="lux-drawer d-lg-none"
+  style="transform: translateX(-110%); transition: transform 0.28s ease; z-index: 2000;">
+  <div class="lux-drawer-panel">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <div class="lux-drawer-title">Menu</div>
+      <button id="closeMenu" class="btn p-0 border-0 bg-transparent" aria-label="Close Menu">
+        <i class="fa-solid fa-times fs-4"></i>
+      </button>
+    </div>
+
+    <div class="d-flex flex-column gap-2">
+      <a href="/" class="lux-drawer-link"><i class="fa-solid fa-house me-2"></i> Home</a>
+
+      <a href="/wishlist" class="lux-drawer-link"><i class="fas fa-heart me-2"></i> Wishlist</a>
+      <a href="/cart" class="lux-drawer-link"><i class="fas fa-shopping-bag me-2"></i> My Cart</a>
+
+      <% if (user) { %>
+        <a href="/auth/logout" class="lux-drawer-link"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+      <% } else { %>
+        <a href="/auth/login" class="lux-drawer-link"><i class="fa-regular fa-user me-2"></i> Account</a>
+      <% } %>
+
+      <a href="https://wa.me/923284400645" class="lux-drawer-link" target="_blank">
+        <i class="fab fa-whatsapp me-2"></i> Whatsapp
+      </a>
+
+      <% if (user && user.role === "admin") { %>
+        <a href="/admin" class="lux-drawer-link">
+         <i class="fa-solid fa-cogs me-2"></i> Admin Panel
+        </a>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="lux-drawer-backdrop" id="drawerBackdrop"></div>
+</div>
+
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeMenu = document.getElementById("closeMenu");
+  const drawerBackdrop = document.getElementById("drawerBackdrop");
+
+  function openDrawer(){
+    mobileMenu.style.transform = "translateX(0)";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeDrawer(){
+    mobileMenu.style.transform = "translateX(-110%)";
+    document.body.style.overflow = "";
+  }
+
+  menuToggle && menuToggle.addEventListener("click", openDrawer);
+  closeMenu && closeMenu.addEventListener("click", closeDrawer);
+  drawerBackdrop && drawerBackdrop.addEventListener("click", closeDrawer);
+</script>
